@@ -15,6 +15,7 @@ yarn build *****.json
     "h": 100 // Image Height
   },
   "fixedPosition": true, // Centering Mode
+  "pingpong": true, // Repeat play and reverse
   "offset": {
     "x": 0, // offset pixel X
     "y": 0, // offset pixel Y

@@ -35,8 +35,9 @@ const varsel = fp => {
     "cy"
   ]);
   // animation
+  let anime = [];
   j.animation.forEach(item => {
-    output.push(...[
+    anime.push(...[
       [
         n(item.x) ? `X=${item.x}:` : "", n(item.y) ? `Y=${item.y}:` : "",
         n(item.s) ? `S=${item.s}:` : "", n(item.a) ? `A=${item.a}` : "",
@@ -50,6 +51,8 @@ const varsel = fp => {
   })
   // close
   output.push(...[
+    ...anime,
+    ...(n(j.pingpong) ? anime.reverse() : []),
     wait(j.framerate),
     "cyend",
     "send"
