@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs-extra");
+const num = process.argv[3] || 0;
 const filepath = `${__dirname}/${path.parse(process.argv[2]).name}.json`;
 const n = x => ![null, undefined, false].includes(x);
 const wait = fr => {
@@ -17,7 +18,7 @@ const varsel = fp => {
 
 (async () => {
   let output = [`#include "rpgfunc.as"`];
-  const j = await fs.readJson(filepath);
+  const j = (await fs.readJson(filepath))[num];
   // define
   output.push(...[
     `I=${j.id}:N="${j.name}":W=${j.size.w}:H=${j.size.h}`,
@@ -63,5 +64,5 @@ const varsel = fp => {
   );
   console.log(result);
   await fs.mkdirs(`${__dirname}/dist/`);
-  await fs.writeFile(`${__dirname}/dist/${path.parse(filepath).name}.hsp`, result);
+  await fs.writeFile(`${__dirname}/dist/${path.parse(filepath).name}_${num}.hsp`, result);
 })()
